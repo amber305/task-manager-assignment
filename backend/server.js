@@ -9,32 +9,14 @@ import userRouter from './routes/userRoute.js';
 const app = express();
 const port = process.env.PORT || 4000;
 
-const corsOptions = {
-    origin: function(origin, callback) {
-        if (!origin) return callback(null, true);
-
-        const allowedOrigins = [
-            'http://localhost:5173',
-            'http://localhost:3000',
-            'https://task-manager-assignment-inky.vercel.app',
-            'https://task-manager-assignment-seven-psi.vercel.app'
-        ];
-
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+app.use(cors({
+    origin: "*",
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-    optionsSuccessStatus: 200
-};
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'],
+    allowedHeaders: ['*']
+}));
 
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +27,7 @@ connectDB();
 app.use("/api/user", userRouter);
 app.use("/api/tasks", taskRouter);
 
+// Your other routes...
 app.get('/api/test', (req, res) => {
     res.json({
         message: 'Backend is working!',
@@ -54,21 +37,6 @@ app.get('/api/test', (req, res) => {
 
 app.get('/', (req, res) => {
     res.send('API Working');
-});
-
-app.get('/health', (req, res) => {
-    res.status(200).json({
-        status: 'OK',
-        message: 'Server is running',
-        timestamp: new Date().toISOString()
-    });
-});
-
-app.use('*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: `Route ${req.originalUrl} not found`
-    });
 });
 
 // Export for Vercel
