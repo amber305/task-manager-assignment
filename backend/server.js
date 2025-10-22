@@ -7,7 +7,18 @@ import taskRouter from './routes/taskRoute.js';
 import userRouter from './routes/userRoute.js';
 
 const app = express();
-const port = process.env.PORT || 4000;
+
+// MANUAL CORS - ADD THIS AT TOP
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Origin, Accept');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).json({});
+    }
+    next();
+});
 
 app.use(cors({
     origin: "*",
@@ -15,8 +26,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'],
     allowedHeaders: ['*']
 }));
-
-app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +36,6 @@ connectDB();
 app.use("/api/user", userRouter);
 app.use("/api/tasks", taskRouter);
 
-// Your other routes...
 app.get('/api/test', (req, res) => {
     res.json({
         message: 'Backend is working!',
@@ -39,5 +47,4 @@ app.get('/', (req, res) => {
     res.send('API Working');
 });
 
-// Export for Vercel
 export default app;
