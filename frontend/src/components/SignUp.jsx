@@ -12,7 +12,7 @@ const SignUp = ({ onSwitchMode }) => {
   const [formData, setFormData] = useState(INITIAL_FORM)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState({ text: "", type: "" })
-  const API_URL = import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL || 'https://task-manager-assignment-seven-psi.vercel.app'
 
   useEffect(() => {
     console.log("SignUp form data changed:", formData)

@@ -18,7 +18,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
   const [rememberMe, setRememberMe] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const API_URL = import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL || 'https://task-manager-assignment-seven-psi.vercel.app'
 
   // Auto-login
   useEffect(() => {
