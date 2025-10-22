@@ -55,7 +55,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
     setError(null);
     try {
       const isEdit = Boolean(taskData.id);
-      const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
+      const url = isEdit ? `${API_BASE}/${taskData.id}` : `${API_BASE}`;
       const resp = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
         headers: getHeaders(),

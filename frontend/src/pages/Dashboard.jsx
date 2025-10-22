@@ -69,7 +69,7 @@ const Dashboard = () => {
   // Save tasks
   const handleTaskSave = useCallback(async (taskData) => {
     try {
-      if (taskData.id) await axios.put(`${API_BASE}/${taskData.id}/gp`, taskData)
+      if (taskData.id) await axios.put(`${API_BASE}/${taskData.id}`, taskData)
       refreshTasks()
       setShowModal(false)
       setSelectedTask(null)

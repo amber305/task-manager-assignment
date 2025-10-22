@@ -26,12 +26,12 @@ const PendingTasks = () => {
   };
 
   const handleDelete = useCallback(async (id) => {
-    await fetch(`${API_BASE}/${id}/gp`, { method: 'DELETE', headers: getHeaders() });
+    await fetch(`${API_BASE}/${id}`, { method: 'DELETE', headers: getHeaders() });
     refreshTasks();
   }, [refreshTasks]);
 
   const handleToggleComplete = useCallback(async (id, completed) => {
-    await fetch(`${API_BASE}/${id}/gp`, {
+    await fetch(`${API_BASE}/${id}`, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify({ completed: completed ? 'Yes' : 'No' }),
