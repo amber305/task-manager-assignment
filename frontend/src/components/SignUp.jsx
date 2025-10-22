@@ -6,13 +6,13 @@ import { useEffect, useState } from "react"
 import { BUTTONCLASSES, FIELDS, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
 
 // Dummy & Constants
-const API_URL = import.meta.env.VITE_API_URL
 const INITIAL_FORM = { name: "", email: "", password: "" }
 
 const SignUp = ({ onSwitchMode }) => {
   const [formData, setFormData] = useState(INITIAL_FORM)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState({ text: "", type: "" })
+  const API_URL = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     console.log("SignUp form data changed:", formData)

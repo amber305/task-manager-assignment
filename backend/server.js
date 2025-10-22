@@ -3,14 +3,24 @@ import 'dotenv/config';
 import express from 'express';
 import { connectDB } from './config/db.js';
 
-import userRouter from './routes/userRoute.js';
 import taskRouter from './routes/taskRoute.js';
+import userRouter from './routes/userRoute.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-// Middleware
-app.use(cors());
+// Enhanced CORS Middleware
+app.use(cors({
+    origin: [
+        'http://localhost:5173', // Vite dev server
+        'http://localhost:3000', // Create React App
+        'https://your-frontend-domain.vercel.app' // Replace with your actual frontend domain
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -19,7 +29,6 @@ connectDB();
 
 // Routes
 app.use("/api/user", userRouter);
-
 app.use('/api/tasks', taskRouter);
 
 app.get('/', (req, res) => {
