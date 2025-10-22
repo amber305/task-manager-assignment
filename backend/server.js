@@ -10,16 +10,28 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 const corsOptions = {
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:3000',
-        'https://task-manager-assignment-inky.vercel.app',
-        'https://task-manager-assignment-seven-psi.vercel.app'
-    ],
+    origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+
+        const allowedOrigins = [
+            'http://localhost:5173',
+            'http://localhost:3000',
+            'https://task-manager-assignment-inky.vercel.app',
+            'https://task-manager-assignment-seven-psi.vercel.app'
+        ];
+
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    optionsSuccessStatus: 200
 };
+
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
