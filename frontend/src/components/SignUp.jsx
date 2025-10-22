@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { BUTTONCLASSES, FIELDS, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
 
 // Dummy & Constants
-const API_URL = import.meta.env.REACT_APP_API_URL
+const API_URL = import.meta.env.VITE_API_URL
 const INITIAL_FORM = { name: "", email: "", password: "" }
 
 const SignUp = ({ onSwitchMode }) => {

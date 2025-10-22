@@ -27,7 +27,7 @@ import {
 } from '../assets/dummy'
 
 // API Base
-const API_BASE = `${import.meta.env.REACT_APP_API_URL}/api/tasks`
+const API_BASE = `${import.meta.env.VITE_API_URL}/api/tasks`
 
 const Dashboard = () => {
   const { tasks, refreshTasks } = useOutletContext()

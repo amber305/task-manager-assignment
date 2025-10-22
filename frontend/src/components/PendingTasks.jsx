@@ -6,7 +6,7 @@ import { layoutClasses } from '../assets/dummy';
 import TaskModal from '../components/AddTask';
 import TaskItem from '../components/TaskItem';
 
-const API_BASE = import.meta.env.REACT_APP_API_URL;
+const API_BASE = import.meta.env.VITE_API_URL;
 const sortOptions = [
   { id: 'newest', label: 'Newest', icon: <SortDesc className="w-3 h-3" /> },
   { id: 'oldest', label: 'Oldest', icon: <SortAsc className="w-3 h-3" /> },

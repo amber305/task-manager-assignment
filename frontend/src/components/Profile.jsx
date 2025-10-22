@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { BACK_BUTTON, DANGER_BTN, FULL_BUTTON, INPUT_WRAPPER, personalFields, SECTION_WRAPPER, securityFields } from '../assets/dummy'
 
 // Constants & Dummy Data
-const API_URL = import.meta.env.REACT_APP_API_URL
+const API_URL = import.meta.env.VITE_API_URL
 
 export default function Profile({ setCurrentUser, onLogout }) {
   const [profile, setProfile] = useState({ name: "", email: "" })

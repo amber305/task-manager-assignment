@@ -9,7 +9,7 @@ const Layout = ({ user, onLogout }) => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const API_BASE = `${import.meta.env.REACT_APP_API_URL}/tasks`
+  const API_BASE = `${import.meta.env.VITE_API_URL}/tasks`
 
   const fetchTasks = useCallback(async () => {
     setLoading(true)

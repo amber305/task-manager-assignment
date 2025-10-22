@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { getPriorityBadgeColor, getPriorityColor, MENU_OPTIONS, TI_CLASSES, } from "../assets/dummy"
 import TaskModal from "./AddTask"
 
-const API_BASE = `${import.meta.env.REACT_APP_API_URL}/api/tasks`
+const API_BASE = `${import.meta.env.VITE_API_URL}/api/tasks`
 
 const TaskItem = ({ task, onRefresh, onLogout, showCompleteCheckbox = true }) => {
   const [showMenu, setShowMenu] = useState(false)

@@ -3,7 +3,7 @@ import { AlignLeft, Calendar, CheckCircle, Flag, PlusCircle, Save, X } from 'luc
 import { useCallback, useEffect, useState } from 'react';
 import { baseControlClasses, DEFAULT_TASK, priorityStyles } from '../assets/dummy';
 
-const API_BASE = `${import.meta.env.REACT_APP_API_URL}/tasks`;
+const API_BASE = `${import.meta.env.VITE_API_URL}/tasks`;
 
 
 const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {

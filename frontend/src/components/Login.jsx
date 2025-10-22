@@ -18,7 +18,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
   const [rememberMe, setRememberMe] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const url = import.meta.env.REACT_APP_API_URL
+  const url = import.meta.env.VITE_API_URL
 
   // Auto-login
   useEffect(() => {
