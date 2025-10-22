@@ -1,14 +1,15 @@
-import { useState, useEffect, useCallback, useMemo } from "react"
+import axios from "axios"
+import { Circle, Clock, TrendingUp, Zap } from "lucide-react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { Outlet } from "react-router-dom"
-import { Circle, TrendingUp, Zap, Clock } from "lucide-react"
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
-import axios from "axios"
 
 const Layout = ({ user, onLogout }) => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const API_BASE = `${import.meta.env.REACT_APP_API_URL}/tasks`
 
   const fetchTasks = useCallback(async () => {
     setLoading(true)
